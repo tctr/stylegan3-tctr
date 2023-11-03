@@ -103,7 +103,10 @@ def generate_images(
     """
 
     print('Loading networks from "%s"...' % network_pkl)
-    device = torch.device('cuda')
+    # setting device on GPU if available, else CPU
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print('Using device:', device)
+    print()
     with dnnlib.util.open_url(network_pkl) as f:
         G = legacy.load_network_pkl(f)['G_ema'].to(device) # type: ignore
 
