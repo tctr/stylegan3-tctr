@@ -262,13 +262,16 @@ def generate_images(
     output video length will be '# seeds/(w*h)*w_frames' frames.
     """
 
-    print('Loading networks from "%s"...' % network_pkl)
-    device = torch.device('cuda')
+    print('Loading networks from "%s"...' % network_pkl)    
+    # setting device on GPU if available, else CPU
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print('Using device:', device)
+    print()
     with dnnlib.util.open_url(network_pkl) as f:
         G = legacy.load_network_pkl(f)['G_ema'].to(device) # type: ignore
 
     gen_interp_video(G=G, mp4=output, bitrate='12M', grid_dims=grid, num_keyframes=num_keyframes, w_frames=w_frames,
-                     seeds=seeds, shuffle_seed=shuffle_seed, psi=truncation_psi, stabilize_video=stabilize_video)
+                     seeds=seeds, shuffle_seed=shuffle_seed, psi=truncation_psi, stabilize_video=stabilize_video, device=device)
 
 
 # ----------------------------------------------------------------------------
