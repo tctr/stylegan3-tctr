@@ -1,3 +1,18 @@
+# What
+
+This a fork of [PDillis/stylegan3-fun](https://github.com/PDillis/stylegan3-fun) with some light modifications :
+
+- a launch.json to be able to debug with VSCode and passing arguments similar to a command line launch
+- a modified environment_nocuda.yml without cuda, working on a Intel MacBook Pro
+- scripts working on the cpu 
+
+stylegan3-fun features more possibilities than stylegan3 including creating interpolation videos from internal representations instead of the final image.
+
+ Tested on mac with gen_images.py
+ 
+ Tip : in VSCode use Python->Select Interpreter to select the right python kernel
+
+
 # StyleGAN3-Fun<br><sub>Let's have fun with StyleGAN2/ADA/3!</sub>
 
 SOTA GANs are hard to train and to explore, and StyleGAN2/ADA/3 are no different. The point of this repository is to allow
